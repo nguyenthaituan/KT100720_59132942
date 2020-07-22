@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/styleAdmin.css" rel="stylesheet" />
+</head>
+<body style="margin-top:0px;">
+    <div id="banner" style="top:0px;position:absolute;">QUẢN LÝ TÀI SẢN</div>
+    <div id="menu" style="margin-top:10px;">
+        <div>
+            @*@Html.ActionLink("GIỚI THIỆU", "../GioiThieu/GioiThieu", new { @class = "a" }) &nbsp;|&nbsp;*@
+            @Html.ActionLink("Danh sách", "../TaiSan_59132942/Index", new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("Thêm mới", "../TaiSan_59132942/Create", new { @class = "a" })&nbsp;|&nbsp;
+            @Html.ActionLink("Tìm Kiếm", "../TaiSan_59132942/TimKiem", new { @class = "a" }) &nbsp;|&nbsp;
+            <hr style="display: block;border-top: 1px solid aqua; margin: 8px 0;" />
+        </div>
+    </div>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+    <div id="footer">
+        Copyright &copy; @DateTime.Now.Year
+    </div>
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@model KT100720_59132942.Models.TaiSan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string xxu = "";
+}
+
+
+<style>
+    table {
+        font-size: 13pt;
+    }
+</style>
+<h3 style="text-align:center; margin-top:50px"> Bạn có chắc chắn xóa thông tin sản phẩm này?</h3>
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="font-size:14px; margin-left:auto; margin-right: auto; margin-top: 20px; margin-bottom:30px">
+    <tr>
+        <td>
+            <h2 style="margin: 10px; text-align: center; color:red"><b>THÔNG TIN CHI TIẾT</b></h2>
+            <table style="margin: 10px" cellpadding="2" cellspacing="10">
+                <tr>
+                    <td rowspan="8"><img src="~/Images/@Html.DisplayFor(model => model.AnhMH)" width="250" height="300" style="margin-right: 10px" /></td>
+                </tr>
+                <tr>
+                    <td><b>Mã tài sản:</b></td>
+                    <td>@Html.DisplayFor(model => model.MaTS)</td>
+                </tr>
+                <tr>
+                    <td><b>Tên tài sản:</b> </td>
+                    <td>@Html.DisplayFor(model => model.TenTS)</td>
+                </tr>
+                <tr>
+                    <td><b>Đơn vị tính:</b> </td>
+                    <td>@Html.DisplayFor(model => model.DVT)</td>
+                </tr>
+                <tr>
+                    <td><b>Xuất xứ:</b> </td>
+                    <td>
+                        @{if (Model.XuatXu == true)
+                            { xxu = "Trong nước"; }
+                            else
+                            { xxu = "Ngoài nước"; }
+                        }
+                        @xxu
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Đơn giá:</b> </td>
+                    <td>@Html.DisplayFor(model => model.DonGia)</td>
+                </tr>
+                <tr>
+                    <td><b>Ghi chú:</b> </td>
+                    <td>@Html.DisplayFor(model => model.GhiChu)</td>
+                </tr>
+                <tr>
+                    <td><b>Loại tài sản:</b></td>
+                    <td> @Html.DisplayFor(model => model.LoaiT.TenLTS)</td>
+                </tr>
+            </table>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color" style="margin-left: 10px; margin-top: 15px; margin-bottom: 10px">
+                    <input type="submit" value="Xóa" /> |
+                    @Html.ActionLink("Quay lại", "Index")
+                </div>
+            }
+</table>
+
+

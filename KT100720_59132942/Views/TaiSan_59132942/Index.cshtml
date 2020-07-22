@@ -1,0 +1,76 @@
+﻿@model IEnumerable<KT100720_59132942.Models.TaiSan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "MaTS", rowsPerPage: 2);
+    @Scripts.Render("~/Scripts/jquery-1.6.2.min.js")
+}
+<html>
+
+<head>
+    <style type="text/css">
+        .grid-footer {
+            color: #000;
+            font: 17px Calibri;
+            text-align: center;
+            font-weight: bold;
+        }
+
+            .grid-footer a {
+                background-color: #ffffff;
+                color: blue;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding: 1px 10px 2px 10px;
+            }
+
+                .grid-footer a:active, a:hover {
+                    background-color: #ffffff;
+                    color: #FFAD33;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                }
+
+        .alternatingRowStyle {
+            background-color: aliceblue;
+        }
+
+        table .table1 {
+            text-align: left;
+            margin-left: 0px;
+            margin-right: 0px;
+            width: 800px;
+        }
+
+        .tr, .td {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gridContent">
+        @ViewBag.TB
+        @grid.GetHtml(
+            tableStyle: "table table-bordered table-hover",
+            footerStyle: "grid-footer",
+            fillEmptyRows: true,
+            mode: WebGridPagerModes.Numeric,
+            alternatingRowStyle: "alternatingRowStyle",
+            columns: new[]  // colums in grid
+            {
+                grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+                grid.Column("MaTS","Mã tài sản"), //the model fields to display
+                grid.Column("TenTS","Tên tài sản"),
+                grid.Column("DVT","Đơn vị tính" ),
+                grid.Column("XuatXu","Xuất xứ" ,format: (@item) => @item.XuatXu==true?"Trong nước":"Ngoài nước"),
+                grid.Column("DonGia","Đơn giá" ),
+                grid.Column("AnhMH","Ảnh minh họa" ),
+                grid.Column("LoaiT.TenLTS","TenLTS"),
+                grid.Column("GhiChu","Ghi chú" ),
+                grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
+                grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
+                grid.Column(format: (item) => Html.ActionLink("Sửa", "Edit","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
+            } )
+    </div>
+</body>
+</html>
