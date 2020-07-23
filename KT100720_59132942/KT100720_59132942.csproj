@@ -222,6 +222,7 @@
     <Content Include="Views\LoaiTS\Edit.cshtml" />
     <Content Include="Views\LoaiTS\Index.cshtml" />
     <Content Include="Views\TaiSan_59132942\TimKiem.cshtml" />
+    <Content Include="Views\TaiSan_59132942\GioiThieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

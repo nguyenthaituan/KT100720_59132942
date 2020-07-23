@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "GioiThieu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ngay = DateTime.Now.ToString("dd/MM/yyyy");
+}
+<h2>THÔNG TIN SINH VIÊN</h2>
+<div style="margin-left: 30px; font-size: 16px;">
+    <table>
+        <tr>
+            <td><b>Tên sinh viên:</b></td>
+            <td>Nguyễn Thái Tuấn</td>
+        </tr>
+        <tr>
+            <td><b>Mã sinh viên:</b></td>
+            <td>59132942</td>
+        </tr>
+        <tr>
+            <td><b>Lớp:</b></td>
+            <td>59.CNTT-1</td>
+        </tr>
+        <tr>
+            <td><b>Ngày kiểm tra:</b></td>
+            <td>@ngay</td>
+        </tr>
+    </table>
+</div>

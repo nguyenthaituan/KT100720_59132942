@@ -20,13 +20,23 @@ namespace KT100720_59132942.Controllers
             var taiSans = db.TaiSans.Include(t => t.LoaiT);
             return View(taiSans.ToList());
         }
-
-        public ActionResult TimKiem(string MaTS = "", string TenTS = "", int giaMin = 0, int giaMax = int.MaxValue)
+        public ActionResult GioiThieu()
         {
+            return View();
+        }
+
+        public ActionResult TimKiem(string MaLTS = "",string MaTS = "", string TenTS = "", int giaMin = 0, int giaMax = int.MaxValue)
+        {
+            int idMaLTS = 0;
             int id = 0;
             if (!MaTS.Equals("")) id = int.Parse(MaTS);
+            if (!MaLTS.Equals("")) idMaLTS = int.Parse(MaLTS);
 
-            var ts = db.TaiSans.Where(d => d.MaTS == id || (id == 0 && d.TenTS.Contains(TenTS)))
+            ViewBag.MaLTS = new SelectList(db.LoaiTS, "MaLTS", "TenLTS");
+
+            var ts = db.TaiSans.Where(d => id == 0 || d.MaTS == id)
+                               .Where(d => idMaLTS == 0 || d.MaLTS == idMaLTS)
+                               .Where(d => d.TenTS.Contains(TenTS))
                                .Where(s => s.DonGia >= giaMin && s.DonGia <= giaMax);
             return View(ts);
         }
