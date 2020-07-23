@@ -40,6 +40,10 @@
             margin-right: 0px;
             width: 800px;
         }
+        img {
+            width: 50px;
+            height: 50px;
+        }
 
         .tr, .td {
             text-align: left;
@@ -64,13 +68,13 @@
                 grid.Column("DVT","Đơn vị tính" ),
                 grid.Column("XuatXu","Xuất xứ" ,format: (@item) => @item.XuatXu==true?"Trong nước":"Ngoài nước"),
                 grid.Column("DonGia","Đơn giá" ),
-                grid.Column("AnhMH","Ảnh minh họa" ),
+                grid.Column("AnhMH","Ảnh minh họa", format: p=> @Html.Raw("<img src=\"../Images/"+p.AnhMH +"\">")),
                 grid.Column("LoaiT.TenLTS","TenLTS"),
                 grid.Column("GhiChu","Ghi chú" ),
                 grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
                 grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
                 grid.Column(format: (item) => Html.ActionLink("Sửa", "Edit","TaiSan_59132942", new { id = item.MaTS },"TaiSan_59132942Controller")),
             } )
-    </div>
+    </div> 
 </body>
 </html>
