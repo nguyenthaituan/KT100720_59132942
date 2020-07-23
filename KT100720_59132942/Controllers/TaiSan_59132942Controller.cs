@@ -14,7 +14,7 @@ namespace KT100720_59132942.Controllers
     {
         private KT100720_59132942Entities db = new KT100720_59132942Entities();
 
-        // GET: TaiSan_59132942
+        // GET: TaiSan_591329421
         public ActionResult Index()
         {
             var taiSans = db.TaiSans.Include(t => t.LoaiT);
